@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fluke.worleycaves.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "worleycaves.refmap.json",
+  "mixins": [
+    "ChunkStatusMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,17 +1,20 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven {url='https://repo.spongepowered.org/repository/maven-public/'}
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
 
 version = '1.16.5-1.6.2'
 group = 'fluke.worleycaves' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -39,7 +42,7 @@ minecraft {
 
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
+            arg "-mixin.config="+archivesBaseName+".mixins.json"
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
@@ -55,7 +58,7 @@ minecraft {
 
             // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
+            arg "-mixin.config="+archivesBaseName+".mixins.json"
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
 
@@ -86,11 +89,23 @@ minecraft {
     }
 }
 
+repositories {
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
 dependencies {
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor' //Re-enable when building jar
+
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.16.5-36.2.5'
+
+    implementation fg.deobf("curse.maven:tf-363820:3451426")
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
@@ -110,6 +125,10 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+}
+
+mixin {
+    add sourceSets.main, "worleycaves.refmap.json"
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

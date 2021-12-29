@@ -1,5 +1,7 @@
 package fluke.worleycaves.config;
 
+import java.util.Set;
+
 public final class WorleyConfig
 {
 	
@@ -14,5 +16,6 @@ public final class WorleyConfig
 	public static double verticalCompressionMultiplier;
 	public static double horizonalCompressionMultiplier;
 	public static double warpAmplifier;
-	
+	public static Set<String> validDimensions;
+
 }

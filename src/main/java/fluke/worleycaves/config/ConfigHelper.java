@@ -2,6 +2,8 @@ package fluke.worleycaves.config;
 
 import net.minecraftforge.fml.config.ModConfig;
 
+import java.util.HashSet;
+
 public class ConfigHelper
 {
 	public static void bakeClient(final ModConfig config)
@@ -21,6 +23,7 @@ public class ConfigHelper
 		WorleyConfig.verticalCompressionMultiplier = ConfigHolder.SERVER.verticalCompressionMultiplier.get();
 		WorleyConfig.horizonalCompressionMultiplier = ConfigHolder.SERVER.horizonalCompressionMultiplier.get();
 		WorleyConfig.warpAmplifier = ConfigHolder.SERVER.warpAmplifier.get();
+		WorleyConfig.validDimensions = new HashSet<>(ConfigHolder.SERVER.validDimensions.get());
 
 	}
 }

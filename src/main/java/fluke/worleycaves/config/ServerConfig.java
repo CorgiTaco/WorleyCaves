@@ -1,7 +1,10 @@
 package fluke.worleycaves.config;
 
+import com.google.common.collect.ImmutableList;
 import fluke.worleycaves.util.Reference;
 import net.minecraftforge.common.ForgeConfigSpec;
+
+import java.util.List;
 
 public class ServerConfig
 {
@@ -15,6 +18,7 @@ public class ServerConfig
 	final ForgeConfigSpec.ConfigValue<Double> verticalCompressionMultiplier;
 	final ForgeConfigSpec.ConfigValue<Double> horizonalCompressionMultiplier;
 	final ForgeConfigSpec.ConfigValue<Double> warpAmplifier;
+	final ForgeConfigSpec.ConfigValue<List<String>> validDimensions;
 
 	ServerConfig(final ForgeConfigSpec.Builder builder)
 	{
@@ -69,7 +73,11 @@ public class ServerConfig
 				.translation(Reference.MOD_ID + ".config.warpAmplifier")
 				.worldRestart()
 				.define("warpAmplifier", 8.0);
-		
+		validDimensions = builder.comment("\nControls what dimension worley's caves may function in.")
+				.translation(Reference.MOD_ID + ".config.validDimensions")
+				.worldRestart()
+				.define("validDimensions", ImmutableList.of("minecraft:overworld"));;
 		builder.pop();
+
 	}
 }
