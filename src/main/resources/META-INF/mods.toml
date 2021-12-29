@@ -7,7 +7,7 @@ license="MIT"
 
 [[mods]]
 	modId="worleycaves"
-	version="1.16.5-1.6.2"
+	version="1.16.5-1.6.3"
 	displayName="Worley's Caves"
 	displayURL="https://www.curseforge.com/minecraft/mc-mods/worleys-caves"
 	credits=""
