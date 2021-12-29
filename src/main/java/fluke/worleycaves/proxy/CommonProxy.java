@@ -67,7 +67,7 @@ public class CommonProxy
 
 			//Remove vanilla cave carver
 			List<Supplier<ConfiguredCarver<?>>> carversAir = event.getGeneration().getCarvers(GenerationStage.Carving.AIR);
-			carversAir.removeIf(carver -> carver.get().worldCarver instanceof CaveWorldCarver);
+			carversAir.removeIf(carver -> carver.get().worldCarver instanceof CaveWorldCarver || carver.get().worldCarver instanceof CanyonWorldCarver);
 
 			//Remove vanilla underwater cave carver
 			List<Supplier<ConfiguredCarver<?>>> carversLiquid = event.getGeneration().getCarvers(GenerationStage.Carving.LIQUID);
